@@ -1,0 +1,31 @@
+.book-image {
+    background: var(--ion-color-dark);
+    padding: 1em 0;
+    ion-img {
+        width: 250px;
+        margin: 0 auto;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+        
+    }
+    .book-title {
+        color: var(--ion-color-light);
+        text-transform: uppercase;
+        font-weight: 200;
+        font-size: 2em;
+        text-align: center;
+        margin: 0;
+        padding: 0.33em 0 0 0;
+        font-family: 'Germania One';
+        font-stretch: extra-expanded;
+    }
+    ion-item {
+        padding: 0.25em 0;
+    }
+}
+
+.info {
+    font-weight: bold;
+    color: var(--ion-color-dark-tint);
+    text-transform: uppercase;
+    font-stretch: expanded;
+}   

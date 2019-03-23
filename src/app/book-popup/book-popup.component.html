@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="book-image">
+      <ion-img src="{{ book.thumbnailUrl }}"></ion-img>
+      <h2 class="book-title">{{ book.name }}</h2>
+  </div>
+
+  <ion-list>
+    <ion-item><span class="info">Authors:</span>{{ book.authors }}</ion-item>
+    <ion-item>
+        <ion-label><span class="info">Start Date:</span> {{ book.startDate | date}}</ion-label>
+        <ion-button slot="end">
+         <ion-icon name="create"></ion-icon>
+        </ion-button>
+    </ion-item>
+    <ion-item>
+        <ion-label><span class="info">End Date:</span> {{ book.finishDate | date}}</ion-label>
+        <ion-button slot="end">
+         <ion-icon name="create"></ion-icon>
+        </ion-button>
+    </ion-item>
+    <ion-item><span class="info">Finished:</span> {{ book.isFinished }}</ion-item>
+    <ion-item><span class="info">ISBN:</span> {{ book.isbn }}</ion-item>
+    <ion-item><span class="info">Page Count:</span> {{ book.pageCount }}</ion-item>
+  </ion-list>
+  
+</ion-content>
