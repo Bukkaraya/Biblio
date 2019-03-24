@@ -5,15 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-
-import { LibraryPage } from './library.page';
-import { BookPopupComponent } from './../book-popup/book-popup.component'
-
+import { AddBookPage } from './add-book.page';
+import { ComponentsModule } from '../components.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: LibraryPage
+    component: AddBookPage
   }
 ];
 
@@ -22,9 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
-  entryComponents: [BookPopupComponent],
-  declarations: [LibraryPage, BookPopupComponent]
+  declarations: [AddBookPage],
 })
-export class LibraryPageModule {}
+export class AddBookPageModule {}

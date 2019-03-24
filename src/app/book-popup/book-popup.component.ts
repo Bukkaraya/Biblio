@@ -8,6 +8,7 @@ import { Book } from '../book';
   templateUrl: './book-popup.component.html',
   styleUrls: ['./book-popup.component.scss'],
 })
+
 export class BookPopupComponent implements OnInit {
   book: Book;
   

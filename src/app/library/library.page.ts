@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { BookPopupComponent } from './../book-popup/book-popup.component';
+
+import { AddBookPage } from './../add-book/add-book.page';
 
 import { Book } from '../book';
 
@@ -47,6 +49,8 @@ export class LibraryPage implements OnInit {
 
     return await modal.present()
   }
+  
+
 
   ngOnInit() {
   }

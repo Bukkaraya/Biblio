@@ -12,7 +12,8 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
-  { path: 'library', loadChildren: './library/library.module#LibraryPageModule' }
+  { path: 'library', loadChildren: './library/library.module#LibraryPageModule' },
+  { path: 'add-book', loadChildren: './add-book/add-book.module#AddBookPageModule' }
 ];
 
 @NgModule({
