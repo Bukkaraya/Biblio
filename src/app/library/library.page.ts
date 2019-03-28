@@ -4,39 +4,23 @@ import { BookPopupComponent } from './../book-popup/book-popup.component';
 
 import { AddBookPage } from './../add-book/add-book.page';
 
+import { DatabaseService } from '../services/database.service';
+
 import { Book } from '../book';
+import { BookFormComponent } from '../book-form/book-form.component';
+import { EditBookComponent } from '../edit-book/edit-book.component';
 
 @Component({
   selector: 'app-library',
   templateUrl: './library.page.html',
   styleUrls: ['./library.page.scss'],
 })
+
 export class LibraryPage implements OnInit {
 
-  books: Book[] = [
-    {
-      name: "Memory of Light",
-      authors: ["Robert Jordan"],
-      isbn: "XXXXXXXXXX",
-      startDate: new Date(),
-      finishDate: new Date(),
-      isFinished: true,
-      thumbnailUrl: "/assets/mol.jpg",
-      pageCount: 900
-    },
-    {
-      name: "Mistborn",
-      authors: ["Brandon Sanderson"],
-      isbn: "XXXXXXXXXX",
-      startDate: new Date(),
-      finishDate: new Date(),
-      isFinished: false,
-      thumbnailUrl: "/assets/hoa.jpg",
-      pageCount: 700
-    }
-  ]
+  books: Book[] = [];
 
-  constructor(public modalController: ModalController) {}
+  constructor(public dbService: DatabaseService, public modalController: ModalController) {}
 
   async showBookModal(book) {
     const modal = await this.modalController.create({
@@ -47,12 +31,36 @@ export class LibraryPage implements OnInit {
       }
     });
 
-    return await modal.present()
+    return await modal.present();
   }
   
+  async deleteBook(book: Book) {
+    this.dbService.deleteBook(book).then(() => {
+      console.log("Deleted book");
+      this.obtainBooks();
+    })
+  }
 
+  obtainBooks() {
+    this.dbService.getBooks().then((val) => {
+      this.books = Array.from(val.values()).map(Book.clone);
+      console.log(this.books)
+    })
+  }
+
+  async editBook(book: Book) {
+    const modal = await this.modalController.create({
+      component: EditBookComponent,
+      componentProps: {
+        book: book
+      }
+    });
+
+    return await modal.present();
+  }
 
   ngOnInit() {
+    this.obtainBooks();
   }
 
 }

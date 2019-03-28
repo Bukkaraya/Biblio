@@ -1,9 +1,35 @@
-<ion-content>
-    <ion-item>
-      <ion-label position="stacked">Title</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Authors</ion-label>
-    </ion-item>
+<ion-content class="book-form">
+  <form [formGroup]="bookForm">
+      <ion-item>
+          <ion-label position="stacked">Title</ion-label>
+          <ion-input name="title"
+          formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Authors</ion-label>
+          <ion-input name="authors"
+           formControlName="authors"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Finished Reading</ion-label>
+            <ion-checkbox slot="start" color="primary"
+            formControlName="isFinished"></ion-checkbox>
+          </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Start Date</ion-label>
+          <ion-datetime display-format="DD-MMM-YYYY"
+          formControlName="startDate"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Finish Date</ion-label>
+          <ion-datetime display-format="DD-MMM-YYYY"
+          formControlName="finishDate"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">ISBN</ion-label>
+          <ion-input name="isbn"
+          formControlName="isbn"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="saveBook()">Save</ion-button>
+  </form>
 </ion-content>

@@ -1,5 +1,5 @@
 .book-image {
-    background: var(--ion-color-dark);
+    background: var(--ion-color-tertiary-shade);
     padding: 1em 0;
     ion-img {
         width: 250px;
@@ -9,14 +9,12 @@
     }
     .book-title {
         color: var(--ion-color-light);
-        text-transform: uppercase;
-        font-weight: 200;
+        font-weight: bold;
         font-size: 2em;
         text-align: center;
         margin: 0;
         padding: 0.33em 0 0 0;
-        font-family: 'Germania One';
-        font-stretch: extra-expanded;
+        letter-spacing: 0.025em;
     }
     ion-item {
         padding: 0.25em 0;
@@ -28,4 +26,5 @@
     color: var(--ion-color-dark-tint);
     text-transform: uppercase;
     font-stretch: expanded;
-}   
+    text-align: left;
+}

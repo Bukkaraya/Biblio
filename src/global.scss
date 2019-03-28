@@ -10,3 +10,14 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 @import url('https://fonts.googleapis.com/css?family=Germania+One');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+* {
+    font-family: 'Source Sans Pro' !important;
+}
+
+
+ion-toolbar {
+    --background: var(--ion-color-primary-shade);
+    color: white;
+}

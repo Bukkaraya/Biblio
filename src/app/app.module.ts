@@ -9,6 +9,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { DatabaseService } from './services/database.service';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +24,11 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
+  exports: [FormsModule,],
   providers: [
     StatusBar,
     SplashScreen,

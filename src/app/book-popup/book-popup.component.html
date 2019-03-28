@@ -1,10 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-button (click)="dismissModal()">
+            <ion-icon name="arrow-round-back"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+        <ion-title class="book-title">
+        {{ book.name }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <div class="book-image">
       <ion-img src="{{ book.thumbnailUrl }}"></ion-img>
       <h2 class="book-title">{{ book.name }}</h2>
   </div>
 
-  <ion-list>
+  <ion-list class="metadata">
     <ion-item><span class="info">Authors:</span>{{ book.authors }}</ion-item>
     <ion-item>
         <ion-label><span class="info">Start Date:</span> {{ book.startDate | date}}</ion-label>

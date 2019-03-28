@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
+import { ComponentsModule } from '../components.module';
+
 
 import { LibraryPage } from './library.page';
 import { BookPopupComponent } from './../book-popup/book-popup.component'
@@ -22,7 +24,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule,
   ],
   entryComponents: [BookPopupComponent],
   declarations: [LibraryPage, BookPopupComponent]

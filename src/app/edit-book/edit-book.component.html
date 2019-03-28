@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()"><ion-icon name="arrow-round-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>
+      Edit Book
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="edit-form">
+  <app-book-form [book]="book"></app-book-form>
+</ion-content>

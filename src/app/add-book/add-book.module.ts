@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddBookPage } from './add-book.page';
 import { ComponentsModule } from '../components.module';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -21,7 +22,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
   ],
   declarations: [AddBookPage],
 })

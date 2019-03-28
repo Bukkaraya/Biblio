@@ -1,0 +1,28 @@
+.book-opts {
+    ion-icon {
+        font-size: 2em;
+    }
+}
+
+.books {
+    .book-item {
+        .title {
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: black;
+        }
+
+    }
+}
+
+.book-thumb {
+    width: 125px;
+    height: 200px;
+    padding: 0.5em;
+}
+
+.delete-button {
+    background: var(--ion-color-danger-tint);
+}
