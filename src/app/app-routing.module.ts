@@ -13,7 +13,8 @@ const routes: Routes = [
   },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'library', loadChildren: './library/library.module#LibraryPageModule' },
-  { path: 'add-book', loadChildren: './add-book/add-book.module#AddBookPageModule' }
+  { path: 'add-book', loadChildren: './add-book/add-book.module#AddBookPageModule' },
+  { path: 'stats', loadChildren: './stats/stats.module#StatsPageModule' }
 ];
 
 @NgModule({

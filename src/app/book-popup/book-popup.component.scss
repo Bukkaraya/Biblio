@@ -2,7 +2,7 @@
     background: var(--ion-color-tertiary-shade);
     padding: 1em 0;
     ion-img {
-        width: 250px;
+        width: 200px;
         margin: 0 auto;
         box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
         
@@ -21,10 +21,14 @@
     }
 }
 
-.info {
-    font-weight: bold;
-    color: var(--ion-color-dark-tint);
-    text-transform: uppercase;
-    font-stretch: expanded;
-    text-align: left;
+
+.metadata {
+    ion-item {
+        h3 {
+            color: var(--ion-color-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            font-size: 1.05em;
+        }
+    }
 }

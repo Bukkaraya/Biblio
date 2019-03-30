@@ -27,6 +27,11 @@ export class AppComponent {
       icon: 'book'
     },
     {
+      title: 'Statistics',
+      url: '/stats',
+      icon: 'analytics'
+    },
+    {
       title: 'Settings',
       url: '/settings',
       icon: 'settings'

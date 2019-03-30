@@ -1,16 +1,14 @@
 export class Book {
-    id?: number;
-    name: string = "";
-    isbn: string = "";
-    startDate: Date = null;
-    finishDate: Date = null;
-    authors: string[] = [];
-    pageCount: number = 0;
-    thumbnailUrl: string = "/assets/agenda.png";
-    isFinished: boolean = false;
+    id: number;
 
-    constructor() {
+    constructor(public name: string = "", public isbn: string = "", 
+        public authors: string[] = [""], public pageCount: number = 0, 
+        public startDate: Date = null, public finishDate: Date = null,
+        public thumbnailUrl: string = "/assets/agenda.png", 
+        public isFinished: boolean = false, public formatOwned: string = "physical") {
+
         this.id = Date.now();
+    
     }
 
     static clone(object: any) {
@@ -23,7 +21,9 @@ export class Book {
         book.finishDate = object.finishDate;
         book.isFinished = object.isFinished;
         book.isbn = object.isbn;
+        book.pageCount = object.pageCount;
         book.thumbnailUrl = object.thumbnailUrl;
+        book.formatOwned = object.formatOwned;
         
         return book;
     }

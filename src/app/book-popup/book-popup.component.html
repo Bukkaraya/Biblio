@@ -18,22 +18,82 @@
   </div>
 
   <ion-list class="metadata">
-    <ion-item><span class="info">Authors:</span>{{ book.authors }}</ion-item>
-    <ion-item>
-        <ion-label><span class="info">Start Date:</span> {{ book.startDate | date}}</ion-label>
-        <ion-button slot="end">
-         <ion-icon name="create"></ion-icon>
-        </ion-button>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>Author(s):</h3>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.authors }}</p>
+            </ion-text>
+        </ion-label>
     </ion-item>
-    <ion-item>
-        <ion-label><span class="info">End Date:</span> {{ book.finishDate | date}}</ion-label>
-        <ion-button slot="end">
-         <ion-icon name="create"></ion-icon>
-        </ion-button>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>Finished:</h3>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.isFinished.toString() | titlecase }}</p>
+            </ion-text>
+        </ion-label>
     </ion-item>
-    <ion-item><span class="info">Finished:</span> {{ book.isFinished }}</ion-item>
-    <ion-item><span class="info">ISBN:</span> {{ book.isbn }}</ion-item>
-    <ion-item><span class="info">Page Count:</span> {{ book.pageCount }}</ion-item>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>Format Owned:</h3>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.formatOwned | titlecase }}</p>
+            </ion-text>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>Start Date:</h3>
+            </ion-text>
+            <ion-text *ngIf="book.startDate === null">
+                <p>No Date</p>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.startDate | date }}</p>
+            </ion-text>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>Finish Date:</h3>
+            </ion-text>
+            <ion-text *ngIf="book.finishDate === null">
+                <p>No Date</p>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.finishDate | date }}</p>
+            </ion-text>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>ISBN:</h3>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.isbn }}</p>
+            </ion-text>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <ion-text>
+                <h3>Page Count:</h3>
+            </ion-text>
+            <ion-text>
+                <p>{{ book.pageCount }}</p>
+            </ion-text>
+        </ion-label>
+    </ion-item>
   </ion-list>
   
 </ion-content>

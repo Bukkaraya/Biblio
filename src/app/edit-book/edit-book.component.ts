@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController, ToastController } from '@ionic/angular';
 
 
 import { Book } from '../book';

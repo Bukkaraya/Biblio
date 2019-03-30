@@ -26,6 +26,19 @@
           formControlName="finishDate"></ion-datetime>
         </ion-item>
         <ion-item>
+          <ion-label position="stacked">Format Owned</ion-label>
+          <ion-select value="list" formControlName="formatOwned">
+            <ion-select-option value="physical">Physical</ion-select-option>
+            <ion-select-option value="ebook">E-Book</ion-select-option>
+            <ion-select-option value="audiobook">Audiobook</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Page Count</ion-label>
+            <ion-input name="pageCount"
+            formControlName="pageCount"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="stacked">ISBN</ion-label>
           <ion-input name="isbn"
           formControlName="isbn"></ion-input>

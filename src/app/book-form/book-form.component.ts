@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController, ToastController } from '@ionic/angular';
 
 import { Router } from '@angular/router'
 
@@ -20,7 +20,8 @@ export class BookFormComponent implements OnInit {
   bookForm: any;
 
 
-  constructor(private dbService: DatabaseService,
+  constructor(public toastController: ToastController,
+    private dbService: DatabaseService,
     public modalCtrl: ModalController,
     public formBuilder: FormBuilder,
     public router: Router) {
@@ -29,22 +30,40 @@ export class BookFormComponent implements OnInit {
   @Input() set book(val: Book) {
     this._book = (val !== undefined && val !== null) ? <Book> val : new Book();
     
+    console.log(this._book);
+
+    this.buildForm();
+    
+  }
+
+
+  buildForm() {
     this.bookForm = this.formBuilder.group({
       name: [this._book.name, Validators.required],
       authors: [this._book.authors, Validators.required],
       startDate: [this._book.getStartDate()],
       finishDate: [this._book.getFinishDate()],
       isFinished: [this._book.isFinished],
-      isbn: [this._book.isbn, Validators.required]
+      isbn: [this._book.isbn, Validators.required],
+      pageCount: [this._book.pageCount, Validators.required],
+      formatOwned: [this._book.formatOwned, Validators.required]
     });
   }
 
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500
+    });
+
+    toast.present();
+  }
 
   saveBook() {
     if (this.bookForm.valid) {
       console.log("Form is valid");
       this._book.name = this.bookForm.value.name;
-      this._book.authors = this.bookForm.value.authors.split(",");
+      this._book.authors = this.bookForm.value.authors.toString().split(",");
       console.log(this.bookForm.value.finishDate);
       
       if (this.bookForm.value.startDate !== null) {
@@ -58,17 +77,39 @@ export class BookFormComponent implements OnInit {
       this._book.isFinished = this.bookForm.value.isFinished;
       this._book.isbn = this.bookForm.value.isbn;
 
+      this._book.pageCount = this.bookForm.value.pageCount;
+      this._book.formatOwned = this.bookForm.value.formatOwned;
+
       this.dbService.addBook(this._book).then(() => {
-        console.log("Editted the book");
+        this.presentToast("Book has been saved");
         this.router.navigateByUrl('/library');
       });
 
 
     } else {
-      console.log("Form is not Valid");
+      this.presentToast("Invalid entry, please try again.");
     }
   }
 
   ngOnInit() {}
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    let log: string[] = [];
+    for (let propName in changes) {
+      let changedProp = changes[propName];
+      let to = JSON.stringify(changedProp.currentValue);
+      if (changedProp.isFirstChange()) {
+        log.push(`Initial value of ${propName} set to ${to}`);
+      } else {
+        let from = JSON.stringify(changedProp.previousValue);
+        log.push(`${propName} changed from ${from} to ${to}`);
+      }
+    }
+
+    this.buildForm();
+
+    console.log(log);
+
+  }
 
 }
