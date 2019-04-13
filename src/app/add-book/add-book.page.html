@@ -11,11 +11,8 @@
 
 <ion-content>
     <ion-row>
-        <ion-col><ion-button expand="block">Scan Barcode</ion-button></ion-col>
+        <ion-col><ion-button expand="block" (click)="getFromBarcode()">Scan Barcode</ion-button></ion-col>
         <ion-col><ion-button (click)="getFromISBN()" expand="block">Add by ISBN</ion-button></ion-col>
       </ion-row>
-      <ion-row>
-          <ion-col><ion-button expand="block">Search for a book</ion-button></ion-col>
-        </ion-row>
     <app-book-form [book]="book"></app-book-form>
 </ion-content>

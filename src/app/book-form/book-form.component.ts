@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 
-import { NavParams, ModalController, ToastController } from '@ionic/angular';
+import { NavController, ModalController, ToastController } from '@ionic/angular';
 
 import { Router } from '@angular/router'
 
@@ -20,7 +20,8 @@ export class BookFormComponent implements OnInit {
   bookForm: any;
 
 
-  constructor(public toastController: ToastController,
+  constructor(public navCtrl: NavController,
+    public toastController: ToastController,
     private dbService: DatabaseService,
     public modalCtrl: ModalController,
     public formBuilder: FormBuilder,
@@ -82,8 +83,28 @@ export class BookFormComponent implements OnInit {
 
       this.dbService.addBook(this._book).then(() => {
         this.presentToast("Book has been saved");
-        this.router.navigateByUrl('/library');
+
+        this.bookForm = this.formBuilder.group({
+          name: ['', Validators.required],
+          authors: ['', Validators.required],
+          startDate: [''],
+          finishDate: [''],
+          isFinished: [false],
+          isbn: ['', Validators.required],
+          pageCount: ['', Validators.required],
+          formatOwned: ['', Validators.required]
+        });
+
+        this.modalCtrl.dismiss().catch((err) => {
+          console.log(err);
+        });
+
+        this.navCtrl.navigateForward('/library');
+
+
       });
+
+
 
 
     } else {

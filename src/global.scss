@@ -9,11 +9,14 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
-@import url('https://fonts.googleapis.com/css?family=Germania+One');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
-* {
-    font-family: 'Source Sans Pro' !important;
+:root,
+:root[mode="ios"],
+:root[mode="md"] {
+  --ion-font-family: "Source Sans Pro", sans-serif !important;
+
+  font-family: "Source Sans Pro", sans-serif !important;
 }
 
 

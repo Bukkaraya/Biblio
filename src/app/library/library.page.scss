@@ -7,22 +7,30 @@
 .books {
     .book-item {
         .title {
-            text-transform: uppercase;
-            letter-spacing: 0.025em;
+            letter-spacing: 0.035em;
             font-size: 1.25em;
             font-weight: bold;
             color: black;
         }
-
     }
 }
 
 .book-thumb {
     width: 125px;
-    height: 200px;
+    height: 140px;
     padding: 0.5em;
 }
 
 .delete-button {
     background: var(--ion-color-danger-tint);
+}
+
+
+.book-searchbar {
+    background-color: var(--ion-color-primary-shade)
+}
+
+.search-info {
+    text-align: center;
+    font-weight: bold;
 }

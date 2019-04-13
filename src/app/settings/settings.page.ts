@@ -9,6 +9,11 @@ export class SettingsPage implements OnInit {
 
   constructor() { }
 
+  exportData() {
+    console.log("Test");
+    
+  }
+
   ngOnInit() {
   }
 

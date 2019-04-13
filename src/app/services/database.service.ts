@@ -39,6 +39,27 @@ export class DatabaseService {
     return this.storage.get(BOOK_KEY);
   }
 
+
+  getBooksByTitle(searchTerm: string): Promise<any> {
+    return new Promise<any>((resolve) => {
+      let books = [];
+      let booksMatched = [];
+
+      this.getBooks().then((val) => {
+        books = Array.from(val.values()).map(Book.clone);
+
+        books.forEach(book => {
+          if(book.name.toLowerCase().indexOf(searchTerm) !== -1) {
+            booksMatched.push(book);
+          }
+        });
+        
+        resolve(booksMatched);
+
+      });
+    });
+  }
+
   getNumBooks(): Promise<any> {
     return new Promise<any>((resolve) => {
       var numBooks = 0;
@@ -69,8 +90,6 @@ export class DatabaseService {
           }
         });
 
-        console.log(finishCount);
-        console.log(finishCount / numBooks);
 
         resolve(finishCount / numBooks);
       });
@@ -126,8 +145,6 @@ export class DatabaseService {
           yearlyCount.set(year, ++result);
         });
   
-        console.log(yearlyCount);
-  
         resolve(yearlyCount);
       });
     });
@@ -141,6 +158,39 @@ export class DatabaseService {
         val.delete(book.id);
         return this.storage.set(BOOK_KEY, val);
       }
+    });
+  }
+
+
+
+  getRecentlyFinished(): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.getBooks().then((val) => {
+        let books = Array.from(val.values()).map(Book.clone);
+        
+        let recentBook = null;
+
+        books.forEach(book => {
+            if(book.finishDate === null) {
+              return;
+            }
+
+            if(recentBook === null){
+              recentBook = book;
+              return
+            }
+
+            let recentFinishTime = recentBook.finishDate.getTime();
+            let currentFinishTime = book.finishDate.getTime();
+
+            if(currentFinishTime > recentFinishTime) {
+              recentBook = book;
+            }
+        });
+
+        resolve(recentBook);
+
+      });
     });
   }
 

@@ -19,6 +19,9 @@ import { EditBookComponent } from '../edit-book/edit-book.component';
 export class LibraryPage implements OnInit {
 
   books: Book[] = [];
+  showSearch = false;
+  searchEmpty = false;
+  searchTerm = "";
 
   constructor(public dbService: DatabaseService, public modalController: ModalController) {}
 
@@ -37,15 +40,14 @@ export class LibraryPage implements OnInit {
   async deleteBook(book: Book) {
     this.dbService.deleteBook(book).then(() => {
       console.log("Deleted book");
-      this.obtainBooks();
+      this.setAllBooks();
     })
   }
 
-  obtainBooks() {
+  setAllBooks() {
     this.dbService.getBooks().then((val) => {
       this.books = Array.from(val.values()).map(Book.clone);
-      console.log(this.books)
-    })
+    });
   }
 
   async editBook(book: Book) {
@@ -59,8 +61,43 @@ export class LibraryPage implements OnInit {
     return await modal.present();
   }
 
+  toggleSearch() {
+    if(this.showSearch) {
+      this.showSearch = false;
+
+      this.searchEmpty = false;
+      
+      this.searchTerm = "";
+      
+      this.setAllBooks();
+    } else {
+      this.showSearch = true;
+    }
+  }
+
+  queryBooks() {
+    
+    this.searchEmpty = false;
+
+    if(this.searchTerm === "") {
+      this.setAllBooks();
+      return
+    }
+    
+    this.dbService.getBooksByTitle(this.searchTerm.toLowerCase())
+    .then((val) => {
+
+      if(val.length < 1) {
+        this.searchEmpty = true;
+      }
+
+      this.books = val;
+    });
+
+  }
+
   ngOnInit() {
-    this.obtainBooks();
+    this.setAllBooks();
   }
 
 }

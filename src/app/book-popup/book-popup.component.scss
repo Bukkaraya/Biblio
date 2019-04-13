@@ -1,11 +1,11 @@
 .book-image {
     background: var(--ion-color-tertiary-shade);
     padding: 1em 0;
-    ion-img {
+    img {
         width: 200px;
         margin: 0 auto;
+        display: block;
         box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
-        
     }
     .book-title {
         color: var(--ion-color-light);

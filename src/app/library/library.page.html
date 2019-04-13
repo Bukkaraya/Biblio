@@ -6,10 +6,19 @@
     <ion-title>
       Library
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!showSearch" (click)="toggleSearch()"><ion-icon name="search"></ion-icon></ion-button>
+      <ion-button *ngIf="showSearch" (click)="toggleSearch()"><ion-icon name="close"></ion-icon></ion-button>  
+    </ion-buttons>
   </ion-toolbar>
+  <ion-searchbar *ngIf="showSearch" placeholder="Search by book title" 
+    class="book-searchbar" [(ngModel)]="searchTerm"
+    (ionChange)="queryBooks()" animated></ion-searchbar>
+
 </ion-header>
 
 <ion-content>
+    <p *ngIf="searchEmpty" class="search-info">No books were found.</p>
     <ion-list class="books">
       <ion-item-sliding *ngFor="let book of books">
         <ion-item (click)="showBookModal(book);" class="book-item">

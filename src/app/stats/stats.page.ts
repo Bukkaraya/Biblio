@@ -17,7 +17,7 @@ export class StatsPage implements OnInit {
   barChart: any;
   
   formatsCount = [];
-  yearlyCount = [""];
+  yearlyCount = [];
 
 
   @ViewChild('doughnutCanvas') doughnutCanvas;

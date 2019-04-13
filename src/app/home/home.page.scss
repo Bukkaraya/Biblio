@@ -2,3 +2,24 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.library-button {
+  margin: 0.5em;
+}
+
+.subtitle {
+  font-size: 1.15em;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  font-weight: lighter;
+  color: var(--ion-color-dark);
+}
+
+.recent-book-card {
+  ion-img {
+    height: 100 px;
+  }
+  p {
+    margin: 0.25em 0;
+  }
+}

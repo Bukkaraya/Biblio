@@ -5,6 +5,8 @@ import { BookFormComponent } from '../book-form/book-form.component';
 import { GbooksService } from '../services/gbooks.service';
 import { AlertController, ToastController } from '@ionic/angular';
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
 
 @Component({
   selector: 'app-add-book',
@@ -15,7 +17,8 @@ export class AddBookPage implements OnInit {
   book: Book = null;
   
       
-constructor(public toastController: ToastController,
+constructor(private barcodeScanner: BarcodeScanner,
+    public toastController: ToastController,
     public alertController: AlertController,
     private gbooksService: GbooksService) { }
 
@@ -26,6 +29,14 @@ constructor(public toastController: ToastController,
     });
 
     toast.present();
+  }
+
+  getFromBarcode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.setBook(barcodeData.text);
+    }).catch(err => {
+      console.log('Error:', err);
+    });
   }
     
   async getFromISBN() {
@@ -51,46 +62,8 @@ constructor(public toastController: ToastController,
           text: 'Okay',
           handler: (data) => {
             console.log(data.isbn);
-            if (data.isbn === "") {
-              this.presentToast("Invalid ISBN. Please try again.");
-              return;
-            }
-            this.gbooksService.getBookByISBN(data.isbn).subscribe((response) => {
-              let result = <any> response;
+            this.setBook(data.isbn)
 
-              console.log(result);
-
-              if(result.totalItems === 0) {
-                this.presentToast("Book was not found. Please add manually.");
-                return;
-              }
-
-              let foundBook = result.items[0].volumeInfo;
-              let thumbUrl = "/assets/shapes.svg";
-
-              if (foundBook.imageLinks !== undefined) {
-                thumbUrl = foundBook.imageLinks.thumbnail;
-              }
-              
-              let isbn = "No ISBN";
-
-              if (foundBook.industryIdentifiers !== undefined) {
-                let identifiers = foundBook.industryIdentifiers;
-
-                for (const element of identifiers) {
-                  if (element.type.toLowerCase().includes("isbn")) {
-                    isbn = element.identifier;
-                    break;
-                  }
-                }
-              }
-
-              this.book = new Book(foundBook.title, isbn, 
-                foundBook.authors, foundBook.pageCount, 
-                null, null, thumbUrl, 
-                false, "physical");
-
-            });
           }
         }
       ]
@@ -100,7 +73,49 @@ constructor(public toastController: ToastController,
 
   }
 
-  ngOnInit() {
+
+  setBook(queryISBN) {
+    if (queryISBN === "") {
+      this.presentToast("Invalid ISBN. Please try again.");
+      return;
+    }
+    this.gbooksService.getBookByISBN(queryISBN).subscribe((response) => {
+      let result = <any> response;
+
+      console.log(result);
+
+      if(result.totalItems === 0) {
+        this.presentToast("Book was not found. Please add manually.");
+        return;
+      }
+
+      let foundBook = result.items[0].volumeInfo;
+      let thumbUrl = "/assets/shapes.svg";
+
+      if (foundBook.imageLinks !== undefined) {
+        thumbUrl = foundBook.imageLinks.thumbnail;
+      }
+      
+      let isbn = "No ISBN";
+
+      if (foundBook.industryIdentifiers !== undefined) {
+        let identifiers = foundBook.industryIdentifiers;
+
+        for (const element of identifiers) {
+          if (element.type.toLowerCase().includes("isbn")) {
+            isbn = element.identifier;
+            break;
+          }
+        }
+      }
+
+      this.book = new Book(foundBook.title, isbn, 
+        foundBook.authors, foundBook.pageCount, 
+        null, null, thumbUrl, 
+        false, "physical");
+    });
   }
+
+  ngOnInit() {}
 
 }

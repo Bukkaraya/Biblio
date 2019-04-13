@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { DatabaseService } from './services/database.service';
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { DatabaseService } from './services/database.service';
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

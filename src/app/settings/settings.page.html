@@ -10,15 +10,9 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-item>
-    <ion-label>Layout:</ion-label>
-    <ion-select value="list">
-      <ion-select-option value="list">List View</ion-select-option>
-      <ion-select-option value="grid">Grid View</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-button expand="block">Sync to CouchDB database</ion-button>
-  <ion-button expand="block">Export Data</ion-button>
+  <div class="options">
+      <ion-button expand="block" (click)="exportData()">Export/Save Data</ion-button>
+      <ion-button expand="block">Import Data</ion-button>
+  </div>
+  
 </ion-content>
